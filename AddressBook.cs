@@ -8,6 +8,7 @@ namespace AddressBookSystem
 {
     class AddressBook
     {
+      
         private List<Contact> contactList;
         public AddressBook()
         {
@@ -30,7 +31,7 @@ namespace AddressBookSystem
         {
             foreach (Contact contact in contactList)
             {
-                Console.WriteLine("FirstName: " + contact.fistName);
+                 Console.WriteLine("FirstName: " + contact.fistName);
                 Console.WriteLine("LastName: " + contact.lastName);
                 Console.WriteLine("Address: " + contact.address);
                 Console.WriteLine("City: " + contact.city);
