@@ -264,5 +264,46 @@ namespace AddressBookSystem
                     break;
             }
         }
+        public void ViewEntriesSortedByPersonName()
+        {
+           List<Contact> sortedByPersonName = this.contactList.OrderBy(obj => (obj.fistName + obj.lastName)).ToList();
+           foreach (Contact contact in sortedByPersonName)
+            {
+                Console.WriteLine("-----------");
+                Console.WriteLine("FirstName: " + contact.fistName + "\tLastName: " + contact.lastName);
+                Console.WriteLine("Address: " + contact.address + "\tCity: " + contact.city + "\tState: " + contact.state);
+                Console.WriteLine("Zip: " + contact.zip + "\tPhoneNumber: " + contact.phoneNumber + "\tEmail: " + contact.email);
+                Console.WriteLine("-----------");
+            }
+        }
+        public void WriteContactsIntoFile(List<Contact> contacts)
+        {
+            String path = @"C:\Users\DELL\Desktop\RFP\AddressBook\AddressBookSystem\AddressBook\TextFile1.txt";
+
+            StreamWriter stream = new StreamWriter(path);
+            foreach (Contact contact in contacts)
+            {
+                stream.Write("Name: " + contact.fistName + "\t");
+                stream.Write("LastName: " + contact.lastName + "\t");
+                stream.Write("State: " + contact.state + "\t");
+
+                stream.WriteLine("\n");
+            }
+            stream.Close();
+
+            ReadContactsFromFile(contacts);
+        }
+
+        public void ReadContactsFromFile(List<Contact> contacts)
+        {
+            String path = @"C:\Users\DELL\Desktop\RFP\AddressBook\AddressBookSystem\AddressBook\TextFile1.txt";
+
+            StreamReader stream = new StreamReader(path);
+
+            Console.WriteLine(stream.ReadToEnd());
+            stream.Close();
+        }
     }
 }
+
+
