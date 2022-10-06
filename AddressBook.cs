@@ -9,7 +9,8 @@ namespace AddressBookSystem
     class AddressBook
     {
         private List<Contact> contactList;
-       
+        private object personal_Details;
+
         public AddressBook()
         {
             contactList = new List<Contact>();
@@ -231,6 +232,35 @@ namespace AddressBookSystem
                     break;
                 default:
                     Console.WriteLine("Contact not found");
+                    break;
+            }
+        }
+        public void CountContacts()
+        {
+            int count = 0;
+            Console.WriteLine("Enter your Choice for Count Person by:");
+            Console.WriteLine("1. City 2. State");
+            String choice = Console.ReadLine();
+            int choiceOne = Convert.ToInt32(choice);
+            switch (choiceOne)
+            {
+                case 1:
+                    Console.WriteLine("Enter your City");
+                    String city = Console.ReadLine();
+                    foreach (Contact personal_Details in this.contactList.FindAll(c => c.city == city))
+                    {
+                         count = this.contactList.Count();
+                    }
+                    Console.WriteLine(count);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter your State");
+                    String state = Console.ReadLine();
+                    foreach (Contact personal_Details in this.contactList.FindAll(c => c.state == state))
+                    {
+                        count = this.contactList.Count();
+                    }
+                    Console.WriteLine(count);
                     break;
             }
         }
