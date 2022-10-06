@@ -8,10 +8,10 @@ namespace AddressBookSystem
 {
     class AddressBook
     {
-         private List<Contact> contactList;
-         public AddressBook()
+        private List<Contact> contactList;
+        public AddressBook()
         {
-             contactList = new List<Contact>();
+            contactList = new List<Contact>();
         }
 
         public void addContacts(string fistName, string lastName, string address, string city, string state, int zip, long phoneNumber, string email)
@@ -34,17 +34,17 @@ namespace AddressBookSystem
             else
                 Console.WriteLine("Cannot add duplicate Contact");
         }
-            private bool equals(string fName, string lName)
-            {
-               if (this.contactList.Any(e => e.fistName == fName && e.lastName == lName))
-                    return true;
-                else
-                    return false;
-            }
-
-            public void print()
+        private bool equals(string fName, string lName)
         {
-             foreach (Contact contact in contactList)
+            if (this.contactList.Any(e => e.fistName == fName && e.lastName == lName))
+                return true;
+            else
+                return false;
+        }
+
+        public void print()
+        {
+            foreach (Contact contact in contactList)
             {
                 Console.WriteLine("FirstName: " + contact.fistName);
                 Console.WriteLine("LastName: " + contact.lastName);
@@ -59,16 +59,16 @@ namespace AddressBookSystem
 
         public void edit(string firstName, string lastName)
         {
-             Contact contactToBeEdited = null;
+            Contact contactToBeEdited = null;
             foreach (Contact contact in this.contactList)
             {
                 if (contact.fistName == firstName && contact.lastName == lastName)
-                 this.editThisContact(contact);
+                    this.editThisContact(contact);
 
             }
-            
+
         }
-         public void editThisContact(Contact contactToBeEdited)
+        public void editThisContact(Contact contactToBeEdited)
         {
             bool status = true;
             while (status == true)
@@ -86,22 +86,22 @@ namespace AddressBookSystem
 
 
                 int choice = Convert.ToInt32(Console.ReadLine());
- 
+
                 switch (choice)
                 {
- 
+
                     case 1:
                         Console.WriteLine("Enter new FirstName");
                         string fName = Console.ReadLine();
                         contactToBeEdited.fistName = fName;
                         break;
- 
+
                     case 2:
                         Console.WriteLine("Enter new LastName");
                         string lName = Console.ReadLine();
                         contactToBeEdited.lastName = lName;
                         break;
- 
+
                     case 3:
                         Console.WriteLine("Enter new Address");
                         string address = Console.ReadLine();
@@ -119,13 +119,13 @@ namespace AddressBookSystem
                         string state = Console.ReadLine();
                         contactToBeEdited.state = state;
                         break;
- 
+
                     case 6:
                         Console.WriteLine("Enter new Zip");
                         int zip = Convert.ToInt32(Console.ReadLine());
                         contactToBeEdited.zip = zip;
                         break;
- 
+
                     case 7:
                         Console.WriteLine("Enter new PhoneNumber");
                         long phoneNumber = long.Parse(Console.ReadLine());
@@ -137,7 +137,7 @@ namespace AddressBookSystem
                         string email = Console.ReadLine();
                         contactToBeEdited.email = email;
                         break;
- 
+
                     case 9:
                         Console.WriteLine("Editing done.New Contact :-");
                         this.printSpecificContact(contactToBeEdited);
@@ -177,6 +177,34 @@ namespace AddressBookSystem
             else
                 Console.WriteLine("Deletion Done.");
         }
+        public void Search()
+        {
+            Console.WriteLine("Enter your Choice for Searching a Person in");
+            Console.WriteLine("1. City 2. State");
+            int choice1 = Convert.ToInt32(Console.ReadLine());
+            switch (choice1)
+            {
+                case 1:
+                    Console.WriteLine("Enter your City Name:");
+                    String NameToSearchInCity = Console.ReadLine();
+                    foreach (Contact personal_Details in this.contactList.FindAll(e => e.city == NameToSearchInCity))
+                    {
+                        Console.WriteLine("City of " + personal_Details.fistName +""+ personal_Details.lastName + " is : " + personal_Details.city);
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Enter your State Name:");
+                    String nameToSearchInState = Console.ReadLine();
+                    foreach (Contact personal_Details in this.contactList.FindAll(e => e.state == nameToSearchInState))
+                    {
+                        Console.WriteLine("City of " + personal_Details.fistName +""+ personal_Details.lastName + " is : " + personal_Details.state);
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Contact not found");
+                    break;
 
+            }
+        }
     }
 }

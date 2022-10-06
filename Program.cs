@@ -20,7 +20,7 @@ namespace AddressBookSystem
              addressBook.print();
 
 
-            Console.WriteLine("What you want to perform ? Press 1 for Edit the details ,\n Press 2 for Delete  details : ");
+            Console.WriteLine("What you want to perform ? Press 1 for Edit the details : \n Press 2 for Delete  details : \n Press 3 for SEARCH  details : ");
             int Selectchoice = Convert.ToInt32(Console.ReadLine());
             switch (Selectchoice)
             {
@@ -39,6 +39,9 @@ namespace AddressBookSystem
                     Console.WriteLine("Enter LastName of Contact to be deleted");
                     string lastNameOfContactToBeDeleted = Console.ReadLine();
                     addressBook.delete(firstNameOfContactToBeDeleted, lastNameOfContactToBeDeleted);
+                    break;
+                case 3:
+                    addressBook.Search();
                     break;
                 default:
                     Console.WriteLine("Please enter the valid number : ");
